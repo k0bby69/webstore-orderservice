@@ -10,11 +10,18 @@ const port = process.env.PORT || 8003;
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
-const allowedOrigins = [
-  'https://webstore-frontend-9669.onrender.com', 
-  'https://webstore-userservice.onrender.com',
-  'http://localhost:3000'
-];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
+
 
 const corsOptions = {
   origin: function (origin, callback) {
