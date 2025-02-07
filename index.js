@@ -11,21 +11,27 @@ app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
 // Define the allowed origins
-const allowedOrigins = ['https://webstore-frontend-9669.onrender.com', 'https://webstore-userservice.onrender.com']; // Replace with your actual domains
+const allowedOrigins = [
+  'https://webstore-frontend-9669.onrender.com', 
+  'https://webstore-userservice.onrender.com',
+  'http://localhost:3000' // Add this for local testing
+];
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log('Origin:', origin); // Log the origin for debugging
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-  credentials: true, // Allow credentials (cookies, Authorization headers)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 };
 
 app.use(cors(corsOptions)); // Apply the CORS middleware with the custom options
+app.options('*', cors(corsOptions)); // Preflight request handling for all routes
 
 const { CreateChannel } = require("./utils");
 require("dotenv").config();
