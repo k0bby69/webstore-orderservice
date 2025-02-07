@@ -10,14 +10,12 @@ const port = process.env.PORT || 8003;
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
+const cors = require('cors');
+
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: '*', // Allows requests from any domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization'
 };
 
 app.use(cors(corsOptions));
