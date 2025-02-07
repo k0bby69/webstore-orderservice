@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const CartSchema = new Schema({
+const WishlistSchema = new Schema({
   customerId: { type: String },
   items: [
     {
@@ -14,7 +14,6 @@ const CartSchema = new Schema({
         type: { type: String },
         stock: { type: Number },
         price: { type: Number },
-
         available:{
 type:Boolean,default:true
         },
@@ -77,8 +76,8 @@ type:Boolean,default:true
     },
   ],
 },{
-
+  optimisticConcurrency: true,
 
 });
 
-module.exports = mongoose.model("cart", CartSchema);
+module.exports = mongoose.model("wishlist", WishlistSchema);
