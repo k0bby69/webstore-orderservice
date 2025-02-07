@@ -5,7 +5,7 @@ const print = console.log;
 const cors = require("cors");
 
 const shoppingRoutes = require("./api/shopping");
-const port = process.env.PORT || 8003;
+const port = process.env.PORT  8003;
 
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
@@ -20,10 +20,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin  allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -48,7 +47,7 @@ async function startApp() {
 
     shoppingRoutes(app, channel);
     app.listen(port, () => {
-      console.log(`Order Service is listening on Port ${port}`);
+      console.log(Order Service is listening on Port ${port});
     });
   } catch (err) {
     console.log("Failed to start app:", err);
