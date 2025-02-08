@@ -113,7 +113,7 @@ shoppingRoutes = (app, channel) => {
         const { _id } = req.user;
         
         const { data } = await service.GetCart({ _id });
-
+        console.log("User ID:", _id);
 
 
         return res.status(200).json(data);
