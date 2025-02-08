@@ -81,4 +81,4 @@ type:Boolean,default:true
 
 });
 
-module.exports = mongoose.model("cart", CartSchema);
+module.exports = mongoose.model("Cart", CartSchema);
