@@ -12,6 +12,7 @@ shoppingRoutes = (app, channel) => {
     app.post('/order', async (req,res,next) => {
 
         try {
+            console.log(req.body);
             const order = await service.PlaceOrder(req.body);
             res.status(201).json(order);
           } catch (error) {
